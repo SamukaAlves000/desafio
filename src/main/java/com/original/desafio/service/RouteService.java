@@ -62,8 +62,8 @@ public class RouteService {
         return routes;
     }
 
-    private ArrayList<String> searchRoutes(String town1, String town2, Map<String, ArrayList<RouteDto>> mapa,
-                                           ArrayList<String> routes, String anterior, Long maxStops) {
+    public ArrayList<String> searchRoutes(String town1, String town2, Map<String, ArrayList<RouteDto>> mapa,
+                                          ArrayList<String> routes, String anterior, Long maxStops) {
 
 
         ArrayList<RouteDto> startRoutes = mapa.get(town1);
@@ -90,7 +90,7 @@ public class RouteService {
         return routes;
     }
 
-    private Map<String, Integer> getNos(GraphDto dto) {
+    public Map<String, Integer> getNos(GraphDto dto) {
 
         Map<String, Integer> nos = new HashMap<>();
 
@@ -106,7 +106,7 @@ public class RouteService {
         return nos;
     }
 
-    private Map<String, ArrayList<RouteDto>> getMapa(Map<String, Integer> nos, GraphDto dto) {
+    public Map<String, ArrayList<RouteDto>> getMapa(Map<String, Integer> nos, GraphDto dto) {
 
         Map<String, ArrayList<RouteDto>> mapa = new HashMap<>();
 
@@ -128,9 +128,18 @@ public class RouteService {
         return mapa;
     }
 
-    private boolean hasDirectConnection(ArrayList<RouteDto> routeDtos, String town2) {
+    public boolean hasDirectConnection(ArrayList<RouteDto> routeDtos, String town2) {
         int cont = routeDtos.stream().filter(routeDto -> routeDto.getTarget().equals(town2)).collect(Collectors.toCollection(ArrayList::new)).size();
         return cont != 0;
+    }
+
+    public Long distance(ArrayList<RouteDto> routeDtos, String town2) {
+        Long distance = routeDtos.stream()
+                .filter(routeDto -> routeDto.getTarget().equals(town2))
+                .collect(Collectors.toCollection(ArrayList::new))
+                .get(0).getDistance();
+
+        return distance;
     }
 
 

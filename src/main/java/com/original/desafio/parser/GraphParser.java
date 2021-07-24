@@ -8,14 +8,18 @@ import java.util.stream.Collectors;
 
 public class GraphParser {
 
-    public static GraphParser get(){
+    public static GraphParser get() {
         return new GraphParser();
     }
 
-    public static GraphDto entityToDto(Graph entity){
-        GraphDto dto = new GraphDto();
-        dto.setId(entity.getId());
-        dto.setData(entity.getRoutes().stream().map(RouteParser::entityToDto).collect(Collectors.toCollection(ArrayList::new)));
+    public static GraphDto entityToDto(Graph entity) {
+        GraphDto dto = GraphDto.builder()
+                .id(entity.getId())
+                .data(entity.getRoutes()
+                        .stream()
+                        .map(RouteParser::entityToDto)
+                        .collect(Collectors.toCollection(ArrayList::new)))
+                .build();
         return dto;
     }
 }

@@ -18,13 +18,13 @@ public class GraphService {
     @Autowired
     GraphRepository repository;
 
-    public GraphDto findById(Long id){
+    public GraphDto findById(Long id) {
 
         Graph graph = repository.findById(id).orElseThrow(() -> new GraphNotFoundException(id));
         return GraphParser.entityToDto(graph);
     }
 
-    public GraphDto save(GraphDto request){
+    public GraphDto save(GraphDto request) {
 
         Graph graph = new Graph();
         graph.setRoutes(request.getData().stream()
@@ -33,12 +33,12 @@ public class GraphService {
 
         Graph saved = repository.save(graph);
 
-        return prepareReturn(saved)  ;
+        return prepareReturn(saved);
     }
 
-    private GraphDto prepareReturn(Graph graph){
+    private GraphDto prepareReturn(Graph graph) {
 
-        GraphDto dto = new GraphDto();
+        GraphDto dto = GraphDto.builder().build();
         dto.setId(graph.getId());
         dto.setData(graph.getRoutes()
                 .stream().map(RouteParser::entityToDto).
