@@ -20,6 +20,19 @@ public class DistanceService {
     @Autowired
     GraphService graphService;
 
+    public DistanceMinResponse result4(String town1, String town2, Long graphId) {
+
+       GraphDto graphDto = graphService.findById(graphId);
+
+       DistanceDto distanceDto = DistanceDto
+               .builder()
+               .data(graphDto.getData())
+               .build();
+
+        return result3(town1, town2, distanceDto);
+
+    }
+
     public DistanceMinResponse result3(String town1, String town2, DistanceDto dto) {
 
         if (town1.equals(town2)) return DistanceMinResponse

@@ -28,7 +28,12 @@ public class DistanceController {
     }
 
     @PostMapping("/from/{town1}/to/{town2}")
-    public ResponseEntity<DistanceMinResponse> desafio5(@PathVariable String town1, @PathVariable String town2, @RequestBody DistanceDto dto) {
+    public ResponseEntity<DistanceMinResponse> desafio7(@PathVariable String town1, @PathVariable String town2, @RequestBody DistanceDto dto) {
         return new ResponseEntity<>(service.result3(town1,town2,dto), HttpStatus.OK);
+    }
+
+    @PostMapping("/{graphId}/from/{town1}/to/{town2}")
+    public ResponseEntity<DistanceMinResponse> desafio8(@PathVariable String town1, @PathVariable String town2, @PathVariable Long graphId) {
+        return new ResponseEntity<>(service.result4(town1,town2, graphId), HttpStatus.OK);
     }
 }
