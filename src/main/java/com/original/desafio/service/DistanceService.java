@@ -3,13 +3,12 @@ package com.original.desafio.service;
 import com.original.desafio.dto.DistanceDto;
 import com.original.desafio.dto.GraphDto;
 import com.original.desafio.dto.RouteDto;
+import com.original.desafio.response.DistanceMinResponse;
 import com.original.desafio.response.DistanceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +19,51 @@ public class DistanceService {
 
     @Autowired
     GraphService graphService;
+
+    public DistanceMinResponse result3(String town1, String town2, DistanceDto dto) {
+
+        if (town1.equals(town2)) return DistanceMinResponse
+                .builder()
+                .distance(0L)
+                .path(dto.getPath())
+                .build();
+
+
+        Long maxStops = null;
+        GraphDto graphDto = GraphDto.builder().data(dto.getData()).build();
+
+        ArrayList<String> response = service.result(town1, town2, maxStops, graphDto);
+
+        if (response.size() == 0) return DistanceMinResponse
+                .builder()
+                .distance(-1L)
+                .path(dto.getPath())
+                .build();
+
+        ArrayList<DistanceMinResponse> distanceMinResponses = new ArrayList<>();
+
+        response.forEach(s -> {
+
+            ArrayList<String> routes = new ArrayList<>();
+            for (int i = 0; i < s.length(); i++) {
+                routes.add(String.valueOf(s.charAt(i)));
+            }
+
+
+            Long distance = this.distance(routes, graphDto).getDistance();
+
+            DistanceMinResponse minResponse = DistanceMinResponse
+                    .builder()
+                    .path(routes)
+                    .distance(distance)
+                    .build();
+
+            distanceMinResponses.add(minResponse);
+
+        });
+
+        return Collections.min(distanceMinResponses, Comparator.comparing(c -> c.getDistance()));
+    }
 
     public DistanceResponse result2(Long graphId, DistanceDto dto) {
 
