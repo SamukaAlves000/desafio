@@ -20,4 +20,9 @@ public class RouteController {
     public ResponseEntity<ArrayList<String>> desafio3(@PathVariable String town1, @PathVariable String town2, @RequestParam(required = false) Long maxStops, @RequestBody GraphDto dto) {
         return new ResponseEntity<>(service.result(town1, town2, maxStops, dto), HttpStatus.OK);
     }
+
+    @PostMapping("/{graphId}/from/{town1}/to/{town2}")
+    public ResponseEntity<ArrayList<String>> desafio4(@PathVariable Long graphId, @PathVariable String town1, @PathVariable String town2, @RequestParam(required = false) Long maxStops) {
+        return new ResponseEntity<>(service.result2(graphId, town1, town2, maxStops), HttpStatus.OK);
+    }
 }

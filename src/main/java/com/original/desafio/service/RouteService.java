@@ -2,6 +2,7 @@ package com.original.desafio.service;
 
 import com.original.desafio.dto.GraphDto;
 import com.original.desafio.dto.RouteDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +12,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class RouteService {
+
+
+    @Autowired
+    GraphService service;
+
+    public ArrayList<String> result2(Long graphId, String town1, String town2, Long maxStops) {
+        GraphDto dto = service.findById(graphId);
+        return this.result(town1, town2, maxStops, dto);
+    }
 
     public ArrayList<String> result(String town1, String town2, Long maxStops, GraphDto dto) {
 
