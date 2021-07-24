@@ -20,7 +20,7 @@ public class DistanceService {
     @Autowired
     GraphService graphService;
 
-    public DistanceMinResponse result4(String town1, String town2, Long graphId) {
+    public DistanceMinResponse minimumDistanceBetweenTwoPathsToSaved(String town1, String town2, Long graphId) {
 
        GraphDto graphDto = graphService.findById(graphId);
 
@@ -29,11 +29,11 @@ public class DistanceService {
                .data(graphDto.getData())
                .build();
 
-        return result3(town1, town2, distanceDto);
+        return minimumDistanceBetweenTwoPaths(town1, town2, distanceDto);
 
     }
 
-    public DistanceMinResponse result3(String town1, String town2, DistanceDto dto) {
+    public DistanceMinResponse minimumDistanceBetweenTwoPaths(String town1, String town2, DistanceDto dto) {
 
         if (town1.equals(town2)) return DistanceMinResponse
                 .builder()
@@ -45,7 +45,7 @@ public class DistanceService {
         Long maxStops = null;
         GraphDto graphDto = GraphDto.builder().data(dto.getData()).build();
 
-        ArrayList<String> response = service.result(town1, town2, maxStops, graphDto);
+        ArrayList<String> response = service.findAllRoutesOriginDestination(town1, town2, maxStops, graphDto);
 
         if (response.size() == 0) return DistanceMinResponse
                 .builder()
@@ -78,15 +78,15 @@ public class DistanceService {
         return Collections.min(distanceMinResponses, Comparator.comparing(c -> c.getDistance()));
     }
 
-    public DistanceResponse result2(Long graphId, DistanceDto dto) {
+    public DistanceResponse distanceFromSpecificPathToSave(Long graphId, DistanceDto dto) {
 
         GraphDto graphDto = graphService.findById(graphId);
         dto.setData(graphDto.getData());
 
-        return this.result(dto);
+        return this.distanceFromSpecificPath(dto);
     }
 
-    public DistanceResponse result(DistanceDto dto) {
+    public DistanceResponse distanceFromSpecificPath(DistanceDto dto) {
 
         if (dto.getPath().size() <= 1) return DistanceResponse.builder().distance(0L).build();
 
@@ -95,7 +95,7 @@ public class DistanceService {
         Long maxStops = null;
         GraphDto graphDto = GraphDto.builder().data(dto.getData()).build();
 
-        ArrayList<String> response = service.result(town1, town2, maxStops, graphDto);
+        ArrayList<String> response = service.findAllRoutesOriginDestination(town1, town2, maxStops, graphDto);
 
         String route = dto.getPath().stream().map(Objects::toString).collect(Collectors.joining(""));
 

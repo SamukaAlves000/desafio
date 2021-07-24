@@ -17,12 +17,12 @@ public class RouteService {
     @Autowired
     GraphService service;
 
-    public ArrayList<String> result2(Long graphId, String town1, String town2, Long maxStops) {
+    public ArrayList<String> findAllRoutesOriginDestinationToSaved(Long graphId, String town1, String town2, Long maxStops) {
         GraphDto dto = service.findById(graphId);
-        return this.result(town1, town2, maxStops, dto);
+        return this.findAllRoutesOriginDestination(town1, town2, maxStops, dto);
     }
 
-    public ArrayList<String> result(String town1, String town2, Long maxStops, GraphDto dto) {
+    public ArrayList<String> findAllRoutesOriginDestination(String town1, String town2, Long maxStops, GraphDto dto) {
 
         ArrayList<String> routes = new ArrayList<>();
 
