@@ -18,6 +18,17 @@ public class DistanceService {
     @Autowired
     RouteService service;
 
+    @Autowired
+    GraphService graphService;
+
+    public DistanceResponse result2(Long graphId, DistanceDto dto) {
+
+        GraphDto graphDto = graphService.findById(graphId);
+        dto.setData(graphDto.getData());
+
+        return this.result(dto);
+    }
+
     public DistanceResponse result(DistanceDto dto) {
 
         if (dto.getPath().size() <= 1) return DistanceResponse.builder().distance(0L).build();
