@@ -5,29 +5,28 @@ import com.original.desafio.dto.GraphDto;
 import com.original.desafio.dto.RouteDto;
 import com.original.desafio.response.DistanceMinResponse;
 import com.original.desafio.response.DistanceResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class DistanceService {
 
-    @Autowired
-    RouteService service;
+    private final RouteService service;
 
-    @Autowired
-    GraphService graphService;
+    private final GraphService graphService;
 
     public DistanceMinResponse minimumDistanceBetweenTwoPathsToSaved(String town1, String town2, Long graphId) {
 
-       GraphDto graphDto = graphService.findById(graphId);
+        GraphDto graphDto = graphService.findById(graphId);
 
-       DistanceDto distanceDto = DistanceDto
-               .builder()
-               .data(graphDto.getData())
-               .build();
+        DistanceDto distanceDto = DistanceDto
+                .builder()
+                .data(graphDto.getData())
+                .build();
 
         return minimumDistanceBetweenTwoPaths(town1, town2, distanceDto);
 

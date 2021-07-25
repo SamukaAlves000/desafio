@@ -7,5 +7,5 @@ import java.io.Serializable;
 @Data
 public class RoutePks implements Serializable {
     private String source;
-    private String target ;
+    private String target;
 }

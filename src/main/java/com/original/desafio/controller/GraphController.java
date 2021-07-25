@@ -2,17 +2,17 @@ package com.original.desafio.controller;
 
 import com.original.desafio.dto.GraphDto;
 import com.original.desafio.service.GraphService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/graph")
+@RequiredArgsConstructor
 public class GraphController {
 
-    @Autowired
-    private GraphService service;
+    private final GraphService service;
 
     @PostMapping
     ResponseEntity<GraphDto> desafio1(@RequestBody GraphDto dto) {

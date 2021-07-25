@@ -1,6 +1,7 @@
 package com.original.desafio.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Graph implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,6 @@ public class Graph implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Route> routes =  new ArrayList<>();
+    private List<Route> routes = new ArrayList<>();
 
 }

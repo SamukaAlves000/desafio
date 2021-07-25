@@ -6,17 +6,18 @@ import com.original.desafio.model.Graph;
 import com.original.desafio.parser.GraphParser;
 import com.original.desafio.parser.RouteParser;
 import com.original.desafio.repository.GraphRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class GraphService {
 
-    @Autowired
-    GraphRepository repository;
+
+    private final GraphRepository repository;
 
     public GraphDto findById(Long id) {
 

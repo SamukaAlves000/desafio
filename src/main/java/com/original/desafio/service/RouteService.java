@@ -2,7 +2,7 @@ package com.original.desafio.service;
 
 import com.original.desafio.dto.GraphDto;
 import com.original.desafio.dto.RouteDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +11,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class RouteService {
 
 
-    @Autowired
-    GraphService service;
+    private final GraphService service;
 
     public ArrayList<String> findAllRoutesOriginDestinationToSaved(Long graphId, String town1, String town2, Long maxStops) {
         GraphDto dto = service.findById(graphId);

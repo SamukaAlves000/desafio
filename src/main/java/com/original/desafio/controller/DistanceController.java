@@ -4,6 +4,7 @@ import com.original.desafio.dto.DistanceDto;
 import com.original.desafio.response.DistanceMinResponse;
 import com.original.desafio.response.DistanceResponse;
 import com.original.desafio.service.DistanceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/distance")
+@RequiredArgsConstructor
 public class DistanceController {
 
-    @Autowired
-    DistanceService service;
+
+    private final DistanceService service;
 
 
     @PostMapping()
@@ -29,11 +31,11 @@ public class DistanceController {
 
     @PostMapping("/from/{town1}/to/{town2}")
     public ResponseEntity<DistanceMinResponse> desafio7(@PathVariable String town1, @PathVariable String town2, @RequestBody DistanceDto dto) {
-        return new ResponseEntity<>(service.minimumDistanceBetweenTwoPaths(town1,town2,dto), HttpStatus.OK);
+        return new ResponseEntity<>(service.minimumDistanceBetweenTwoPaths(town1, town2, dto), HttpStatus.OK);
     }
 
     @PostMapping("/{graphId}/from/{town1}/to/{town2}")
     public ResponseEntity<DistanceMinResponse> desafio8(@PathVariable String town1, @PathVariable String town2, @PathVariable Long graphId) {
-        return new ResponseEntity<>(service.minimumDistanceBetweenTwoPathsToSaved(town1,town2, graphId), HttpStatus.OK);
+        return new ResponseEntity<>(service.minimumDistanceBetweenTwoPathsToSaved(town1, town2, graphId), HttpStatus.OK);
     }
 }
