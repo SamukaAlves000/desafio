@@ -19,6 +19,10 @@ import java.io.Serializable;
 public class Route implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Id
     private String source;
 
     @Id
