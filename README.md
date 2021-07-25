@@ -421,7 +421,7 @@ Esse endpoint deverá fazer exatamente o mesmo que o anterior, porém utilizando
 }
 ```
 
-### Dados para Teste
+## Dados para Teste
 
 Grafo Entrada: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
 
@@ -442,7 +442,7 @@ Casos de Teste:
 - Distância mínima de A para C: ABC (distância = 9)
 - Distância mínima de B para B: B (distância = 0)
 
-### Finalização do Desenvolvimento
+## Finalização do Desenvolvimento
 
 Recomendamos que você utilize seu repositório pessoal para organizar suas atividades de desenvolvimento. Trabalhe com commits organizados e envie pequenas alterações para sua branch sempre que tiver o código e aplicação estáveis para execução.
 
@@ -457,5 +457,9 @@ Assim que finalizado seu projeto, enviar link do seu github com o desafio.
 
 Observe que neste projeto é mais importante que você entregue um código de qualidade do que todas as funcionalidades exigidas. Seu código será avaliado independente da entrega total de funcionalidades. É esperado que você desenvolva sem ajuda ou intervenção direta de terceiros, mas encorajamos que você pesquise por soluções e boas práticas sem nenhum tipo de restrição, apenas lembre-se que, caso seja aprovado para a próxima etapa, serão realizadas perguntas na entrevista, a fim de certificar seu conhecimento total sobre a implementação.
  
+## Materiais úteis
 
+- https://spring.io/
+- https://www.youtube.com/watch?v=bCzsSXE4Jzg&list=PL62G310vn6nFBIxp6ZwGnm8xMcGE3VA5H
+- https://github.com/SamukaAlves000/barber-backend
  
