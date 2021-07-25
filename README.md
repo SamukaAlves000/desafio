@@ -7,7 +7,7 @@ Estamos esperando uma aplicação executável com uma estrutura mínima. Você d
 - A aplicação deverá ser feita com Spring boot versão 2.1.17.RELEASE e maven.
 - A versão do Java deverá ser 8 ou superior.
 - Testes unitários serão considerados na avaliação.
-- A aplicação pode ser inicializada pelo simples comando Maven: mvn springboot:run.
+- A aplicação pode ser inicializada pelo simples comando Maven: mvn spring-boot:run.
 - Você pode definir outra maneira de inicializar sua aplicação conforme se sentir mais confortável, porém sua aplicação deve funcionar perfeitamente utilizando o comando de inicialização do Spring Boot.
 - A aplicação deve conter a API stateless conforme especificação e usar um banco de dados h2, quando necessário, você deve garantir que sua aplicação funcione independente do ambiente externo.
 - A criação do banco de dados, assim como sua estrutura de tabelas, deverá acontecer de forma automática em tempo de execução.
