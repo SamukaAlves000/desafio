@@ -28,7 +28,7 @@ Uma rota direcionada será dada como um objeto JSON, onde os bairros serão nome
 ```
 
 <p align="center">
- <img src="https://ibb.co/VTsRmTc" width="400">
+ <img src="https://i.ibb.co/pdScydB/Screenshot-3.png" width="400">
 </p>
 
 ## Funcionalidades Esperadas (Especificação Funcional)
