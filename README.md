@@ -41,6 +41,7 @@ Esse endpoint deverá receber as arestas de um grafo e salvá-las em um banco de
 - HTTP Method: POST
 - HTTP Success Response Code: CREATED (201)
 - Contract:
+
  - Request payload
 
  ```json
