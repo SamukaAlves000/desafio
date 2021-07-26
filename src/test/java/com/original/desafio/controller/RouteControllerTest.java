@@ -43,7 +43,7 @@ class RouteControllerTest {
     @DisplayName("Find All Routes Origin Destination WhenSuccessful")
     void findAllRoutesOriginDestination_WhenSuccessful() {
 
-        ArrayList<String> list = controller.desafio3("A", "D", 1L, null).getBody();
+        ArrayList<String> list = controller.desafio3V1("A", "D", 1L, null).getBody();
 
         Assertions.assertThat(list).isNotEmpty();
         Assertions.assertThat(list.size()).isEqualTo(3);
@@ -54,7 +54,7 @@ class RouteControllerTest {
     @DisplayName("Find All Routes Origin Destination to save WhenSuccessful")
     void findAllRoutesOriginDestinationToSave_WhenSuccessful() {
 
-        ArrayList<String> list = controller.desafio4(1L, "A", "D", 1L).getBody();
+        ArrayList<String> list = controller.desafio4V1(1L, "A", "D", 1L).getBody();
 
         Assertions.assertThat(list).isNotEmpty();
         Assertions.assertThat(list.size()).isEqualTo(3);

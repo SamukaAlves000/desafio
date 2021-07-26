@@ -2,6 +2,7 @@ package com.original.desafio.service;
 
 import com.original.desafio.dto.GraphDto;
 import com.original.desafio.dto.RouteDto;
+import com.original.desafio.response.RouteStopResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,35 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RouteService {
 
-
     private final GraphService service;
+
+    public ArrayList<RouteStopResponse> findAllRoutesOriginDestinationV2(String town1, String town2, Long maxStops, GraphDto dto){
+
+        ArrayList<String> list = this.findAllRoutesOriginDestination(town1, town2, maxStops, dto);
+        ArrayList<String>  response = new ArrayList<>();
+
+
+        ArrayList<RouteStopResponse> routeStopResponses = new ArrayList<>();
+
+        if(maxStops != null){
+              response = list.stream().filter(s -> s.length() <= maxStops + 1).collect(Collectors.toCollection(ArrayList::new));
+        }else{
+            response = list;
+        }
+
+        response.forEach(s -> {
+            RouteStopResponse routeStopResponse = RouteStopResponse.builder().route(s).stops(s.length() -1L).build();
+            routeStopResponses.add(routeStopResponse);
+        });
+
+        return routeStopResponses;
+    }
+
+
+    public ArrayList<RouteStopResponse> findAllRoutesOriginDestinationToSaved2(Long graphId, String town1, String town2, Long maxStops) {
+        GraphDto dto = service.findById(graphId);
+        return this.findAllRoutesOriginDestinationV2(town1, town2, maxStops, dto);
+    }
 
     public ArrayList<String> findAllRoutesOriginDestinationToSaved(Long graphId, String town1, String town2, Long maxStops) {
         GraphDto dto = service.findById(graphId);
@@ -34,13 +62,10 @@ public class RouteService {
 
         if (this.hasDirectConnection(startRoutes, town2)) {
             routes.add(town1 + town2);
-            if (maxStops != null && routes.size() == maxStops) return routes;
         }
 
 
         for (int i = 0; i < startRoutes.size(); i++) {
-
-            if (maxStops != null && routes.size() == maxStops) return routes;
 
             int indice = i;
             String chave = startRoutes.get(indice).getTarget();
@@ -53,7 +78,6 @@ public class RouteService {
 
             if (this.hasDirectConnection(response, town2)) {
                 routes.add(town1 + chave + town2);
-                if (maxStops != null && routes.size() == maxStops) return routes;
             }
 
             this.searchRoutes(chave, town2, mapa, routes, town1, maxStops);
@@ -70,8 +94,6 @@ public class RouteService {
 
         for (int i = 0; i < startRoutes.size(); i++) {
 
-            if (maxStops != null && routes.size() == maxStops) return routes;
-
             String chave = startRoutes.get(i).getTarget();
 
             if (chave.equals(town2) || anterior.contains(chave)) {
@@ -80,7 +102,6 @@ public class RouteService {
 
             if (this.hasDirectConnection(mapa.get(chave), town2)) {
                 routes.add(anterior + town1 + chave + town2);
-                if (maxStops != null && routes.size() == maxStops) return routes;
             }
 
             this.searchRoutes(chave, town2, mapa, routes, anterior + town1, maxStops);
