@@ -456,10 +456,17 @@ Assim que finalizado seu projeto, enviar link do seu github com o desafio.
 - Completar todas funcionalidades.
 
 Observe que neste projeto é mais importante que você entregue um código de qualidade do que todas as funcionalidades exigidas. Seu código será avaliado independente da entrega total de funcionalidades. É esperado que você desenvolva sem ajuda ou intervenção direta de terceiros, mas encorajamos que você pesquise por soluções e boas práticas sem nenhum tipo de restrição, apenas lembre-se que, caso seja aprovado para a próxima etapa, serão realizadas perguntas na entrevista, a fim de certificar seu conhecimento total sobre a implementação.
- 
+
+## Informações úteis
+
+- O sistema de autenticação utilizado na API é o Basic Authentication, utilize as credenciais abaixo para testes dos endpoints.
+  - Username: samuel
+  - Password: 12345
+
 ## Materiais úteis
 
 - https://spring.io/
 - https://www.youtube.com/watch?v=bCzsSXE4Jzg&list=PL62G310vn6nFBIxp6ZwGnm8xMcGE3VA5H
 - https://github.com/SamukaAlves000/barber-backend
+- https://www.youtube.com/watch?v=_NKOajmVNZw
  
